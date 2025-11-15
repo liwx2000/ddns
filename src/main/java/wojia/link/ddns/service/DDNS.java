@@ -77,10 +77,12 @@ public class DDNS {
                 return;
             }
 
+            String rr = isNullOrEmpty(config.getRr()) ? "@" : config.getRr();
+
             // 修改解析记录
             UpdateDomainRecordRequest updateDomainRecordRequest = new UpdateDomainRecordRequest();
             // 主机记录
-            updateDomainRecordRequest.setRR("@");
+            updateDomainRecordRequest.setRR(rr);
             // 记录ID
             updateDomainRecordRequest.setRecordId(record.getRecordId());
             // 将主机记录值改为当前主机IP
@@ -102,12 +104,13 @@ public class DDNS {
 
     @SneakyThrows
     private static DescribeDomainRecordsResponse.Record getDomainRecord(IAcsClient client, DdnsConfig config) {
-        // 查询指定二级域名的最新解析记录
+        // 查询指定主机记录(RR)的最新解析记录
         DescribeDomainRecordsRequest describeDomainRecordsRequest = new DescribeDomainRecordsRequest();
         // 主域名
         describeDomainRecordsRequest.setDomainName(config.getDomain());
         // 主机记录
-        describeDomainRecordsRequest.setRRKeyWord("@");
+        String rr = isNullOrEmpty(config.getRr()) ? "@" : config.getRr();
+        describeDomainRecordsRequest.setRRKeyWord(rr);
         // 解析记录类型
         describeDomainRecordsRequest.setType("A");
 
