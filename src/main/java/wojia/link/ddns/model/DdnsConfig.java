@@ -25,6 +25,12 @@ public class DdnsConfig {
     String domain;
 
     /**
+     * 主机记录（RR），如 @、www、或三级子域如 a.b。
+     * 为空或未设置时，默认使用 @ 记录。
+     */
+    String rr;
+
+    /**
      * 域名所在的region
      */
     String region;
