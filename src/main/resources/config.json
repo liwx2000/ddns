@@ -1,0 +1,9 @@
+{
+  "token": "lijinglei",
+  "domain": "",
+  "region": "cn-hangzhou",
+  "accessKeyId": "",
+  "accessKeySecret": "",
+  "mainChannel": "http://api.ipify.org?format=json",
+  "fallbackChannel": "https://jsonip.com/"
+}
